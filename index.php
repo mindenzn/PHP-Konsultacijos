@@ -1,15 +1,18 @@
 <?php
-$names = ['mavis', 'zAyn', 'leTTy', 'sAmuel', 'MabbeLe', 'mereDit'];
-var_dump($names);
-
-function letters($names)
+$num = rand(-10, 10);
+$num2 = rand(-10, 10);
+var_dump($num, $num2);
+/**
+ * @param int $num
+ * @param int $num2
+ * @return bool
+ */
+function check( $num, $num2)
 {
-    $names_converted = [];
-    foreach ($names as $name) {
-        $names_converted[] = ucfirst(strtolower($name));
-    }
-    return $names_converted;
+    if (($num < 0 && $num2 < 0) || ($num > 0 && $num2 > 0) || ($num && $num2 == 0)) {
+        return true;
+    } else return false;
 }
 
-var_dump(letters($names));
+var_dump(check($num, $num2));
 ?>
