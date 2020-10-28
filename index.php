@@ -1,14 +1,15 @@
 <?php
-$cards = ['A', 'K', 'Q', 'J', 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-$kinds = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
-$card_deck = [];
-foreach ($cards as $keys => $card) {
-    foreach ($kinds as $key => $kind) {
-        $card_deck[] = [
-            'kind' => $kind,
-            'card' => $card
-        ];
+$names = ['mavis', 'zAyn', 'leTTy', 'sAmuel', 'MabbeLe', 'mereDit'];
+var_dump($names);
+
+function letters($names)
+{
+    $names_converted = [];
+    foreach ($names as $name) {
+        $names_converted[] = ucfirst(strtolower($name));
     }
+    return $names_converted;
 }
-var_dump($card_deck);
+
+var_dump(letters($names));
 ?>
