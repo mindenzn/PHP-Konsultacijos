@@ -107,5 +107,6 @@ $pair_answer = 'Do i have pair? :' . card_pair($same);
 </section>
 <h3>Do i have flush? : <?php print $answer_same_type; ?></h3>
 <h3><?php print $pair_answer ?></h3>
+<h2>Done</h2>
 </body>
 </html>
