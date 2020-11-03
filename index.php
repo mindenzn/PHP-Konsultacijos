@@ -1,31 +1,37 @@
 <?php
-$hurdle_jump = [rand(1, 10), rand(1, 10), rand(1, 10), rand(1, 10), rand(1, 10)];
-$jump_height = rand(5, 12);
+$str = 'Mano batai buvo trys du nupizdino gaidys';
+$str = preg_replace_callback('/(\w)(.?)/', 'altcase', $str);
+print $str;
 
-function jump($array, $number)
+function altcase($m){
+    return strtoupper($m[1]).$m[2];
+}
+
+
+/**
+ * Capitalizes every other character
+ *
+ * @param $string
+ */
+function alt_caps(&$string)
 {
-    foreach ($array as $jump) {
-        if ($jump > $number) {
-            return true;
-        } else return false;
+    $array = str_split($string);
+    $count = 0;
+    foreach ($array as &$char) {
+        if ($count % 2 == 0 && $char != " ") {
+            $char = strtoupper($char);
+            $count++;
+        } elseif ($char != " ") {
+            $char = strtolower($char);
+            $count++;
+        }
     }
-
+    $string = implode($array);
 }
 
-var_dump(jump($hurdle_jump, $jump_height));
-
-$two_digit_num = rand(11, 99);
-
-function reverse($jump, $number_r)
-{
-    $converted = strrev($number_r);
-    if (intval($converted) == $jump) {
-       return true;
-    }else return false;
-    
-}
-
-var_dump(reverse($jump_height, $two_digit_num));
+$string = 'mano batai buvo trys viens pasislepe gaidys';
+alt_caps($string);
+var_dump($string);
 ?>
 <!doctype html>
 <html lang="en">
