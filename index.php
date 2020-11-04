@@ -1,23 +1,14 @@
 <?php
-/**
- *function to square number
- * @param int $number
- * @return int
- */
-function square(int $number): int
-{
-    return pow($number, 2);
-}
-var_dump($_POST);
-if (isset($_POST['number'])) {
-    if (is_numeric(trim($_POST['number']))) {
-        $text = square(intval(trim($_POST['number'])));
-    } else {
-        $text = 'Please enter correct number';
+if (!empty($_POST)) {
+    $text = '';
+    if (intval($_POST['amzius']) >= 18 || intval($_POST['amzius']) <= 26) {
+        if (intval($_POST['teistumas']) == 2) {
+            $text .= 'Jus ESATE suakiamas i kariuomene';
+        } else $text .= 'Jus NESATE saukiamas i kariuomene';
     }
-} else {
-    $text = 'Enter any number';
-}
+} else $text = 'Iveskite reikamus laukus';
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -28,11 +19,18 @@ if (isset($_POST['number'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
+<style>
+
+</style>
 <body>
 <form method="POST">
-    <input name="number" type="text">
-    <button type="submit">Submit</button>
+    <input type="number" name="amzius" required>
+    <label for="teistas">Teistas</label>
+    <input id="teistas" type="radio" name="teistumas" value="1">
+    <label for="neteistas">Neteistas</label>
+    <input id="neteistas" type="radio" name="teistumas" value="2">
+    <input type="submit" name="submit" value="Pateikti">
 </form>
-<div><?= $text ?></div>
+<h1><?php print $text ?></h1>
 </body>
 </html>
