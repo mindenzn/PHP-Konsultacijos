@@ -1,12 +1,24 @@
 <?php
-if (!empty($_POST)) {
-    $text = '';
-    if (intval($_POST['amzius']) >= 18 || intval($_POST['amzius']) <= 26) {
-        if (intval($_POST['teistumas']) == 2) {
-            $text .= 'Jus ESATE suakiamas i kariuomene';
-        } else $text .= 'Jus NESATE saukiamas i kariuomene';
+if (!empty($_POST['submit'])) {
+    $text = date('l');
+    {
+        if ($text == 'Monday') {
+            $text = 'Pirmadienis';
+        } elseif ($text == 'Tuesday') {
+            $text = 'Antradienis';
+        } elseif ($text == 'Wednesday') {
+            $text = 'Treciadienis';
+        } elseif ($text == 'Thursday ') {
+            $text = 'Ketvirtadienis';
+        } elseif ($text == 'Friday') {
+            $text = 'Penktadienis';
+        } elseif ($text == 'Saturday ') {
+            $text = 'Sestadienis';
+        } elseif ($text == 'Sunday') {
+            $text = 'Sekmadienis';
+        }
     }
-} else $text = 'Iveskite reikamus laukus';
+} else $text = 'Spausk mygtuka ir suzinok data'
 
 
 ?>
@@ -24,12 +36,7 @@ if (!empty($_POST)) {
 </style>
 <body>
 <form method="POST">
-    <input type="number" name="amzius" required>
-    <label for="teistas">Teistas</label>
-    <input id="teistas" type="radio" name="teistumas" value="1">
-    <label for="neteistas">Neteistas</label>
-    <input id="neteistas" type="radio" name="teistumas" value="2">
-    <input type="submit" name="submit" value="Pateikti">
+    <input type="submit" name="submit" value="Atsapausdinti data">
 </form>
 <h1><?php print $text ?></h1>
 </body>
