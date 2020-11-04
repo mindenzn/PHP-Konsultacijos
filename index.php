@@ -1,37 +1,23 @@
 <?php
-$str = 'Mano batai buvo trys du nupizdino gaidys';
-$str = preg_replace_callback('/(\w)(.?)/', 'altcase', $str);
-print $str;
-
-function altcase($m){
-    return strtoupper($m[1]).$m[2];
-}
-
-
 /**
- * Capitalizes every other character
- *
- * @param $string
+ *function to square number
+ * @param int $number
+ * @return int
  */
-function alt_caps(&$string)
+function square(int $number): int
 {
-    $array = str_split($string);
-    $count = 0;
-    foreach ($array as &$char) {
-        if ($count % 2 == 0 && $char != " ") {
-            $char = strtoupper($char);
-            $count++;
-        } elseif ($char != " ") {
-            $char = strtolower($char);
-            $count++;
-        }
-    }
-    $string = implode($array);
+    return pow($number, 2);
 }
-
-$string = 'mano batai buvo trys viens pasislepe gaidys';
-alt_caps($string);
-var_dump($string);
+var_dump($_POST);
+if (isset($_POST['number'])) {
+    if (is_numeric(trim($_POST['number']))) {
+        $text = square(intval(trim($_POST['number'])));
+    } else {
+        $text = 'Please enter correct number';
+    }
+} else {
+    $text = 'Enter any number';
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -40,12 +26,13 @@ var_dump($string);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-<section>
-
-</section>
+<form method="POST">
+    <input name="number" type="text">
+    <button type="submit">Submit</button>
+</form>
+<div><?= $text ?></div>
 </body>
 </html>
